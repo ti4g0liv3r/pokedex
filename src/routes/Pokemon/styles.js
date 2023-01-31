@@ -19,8 +19,10 @@ export const StyledSection = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: ${({ bgColor }) => bgColor};
+  background-color: ${({ bgColor, theme: { tagColor } }) =>
+    bgColor && tagColor[bgColor]};
   padding-top: 20px;
+  margin-top: 20px;
 `;
 
 export const SectionHeader = styled.div`
@@ -30,7 +32,9 @@ export const SectionHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   color: white;
+  margin-bottom: 20px;
 
   > p.pokemon-name {
     text-transform: capitalize;
@@ -49,8 +53,8 @@ export const SectionHeader = styled.div`
 
 export const TypesContainer = styled.div`
   width: 100%;
+  height: 40px;
   max-width: 500px;
-  margin: 10px 0px;
 `;
 
 export const StatsCardContainer = styled.div`
@@ -176,12 +180,16 @@ export const NavContainer = styled.nav`
 
     &:hover {
       color: gray;
-      border-bottom: 2px solid ${({ hoverColor }) => hoverColor};
+      border-bottom: 2px solid
+        ${({ hoverColor, theme: { tagColor } }) =>
+          hoverColor && tagColor[hoverColor]};
     }
   }
 
   > a.active {
     color: gray;
-    border-bottom: 2px solid ${({ hoverColor }) => hoverColor};
+    border-bottom: 2px solid
+      ${({ hoverColor, theme: { tagColor } }) =>
+        hoverColor && tagColor[hoverColor]};
   }
 `;

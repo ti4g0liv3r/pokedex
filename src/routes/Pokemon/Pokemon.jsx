@@ -23,29 +23,6 @@ PENDING MOVE COMPONENTS OUT OF THIS COMPONENT
 
 */
 
-const TAG_COLOR = {
-  normal: "#474747",
-  fighting: "#995e11",
-  flying: "#078",
-  poison: "#4a0c6e",
-  ground: "#5f3c08",
-  rock: "#695a45",
-  bug: "#389712",
-  ghost: "#45385a",
-  steel: "#60777a",
-  fire: "#7e1c1c",
-  water: "#173e88",
-  grass: "#0e5f1b",
-  electric: "#d3b21f",
-  psychic: "#a2aa5d",
-  ice: "#598cb6",
-  dragon: "#20b37b",
-  dark: "#233235",
-  fairy: "#c437d1",
-  unknown: "#666666",
-  shadow: "#1c2a2c",
-};
-
 export const Pokemon = () => {
   const [activeMenu, setActiveMenu] = useState("basic-info");
   const { pokemonName } = useParams();
@@ -56,7 +33,7 @@ export const Pokemon = () => {
   if (error) return <Title>Oops, something went wrong</Title>;
 
   const { types, stats } = data;
-  const colorByType = TAG_COLOR[types[0].type?.name || "normal"];
+  const colorByType = types[0].type?.name || "normal";
 
   return (
     <StyledSection bgColor={colorByType}>
