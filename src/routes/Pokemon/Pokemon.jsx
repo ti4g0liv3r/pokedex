@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { Title, TypeTag } from "../../components";
+import { useParams } from "react-router-dom";
+
+import { AddToFav, BackButton, Title, TypeTag } from "../../components";
 import { useClient } from "../../hooks";
 import {
   AdditionalImageWrapper,
@@ -15,6 +16,12 @@ import {
   StyledSection,
   TypesContainer,
 } from "./styles";
+
+/* 
+PENDING MOVE COMPONENTS OUT OF THIS COMPONENT
+
+
+*/
 
 const TAG_COLOR = {
   normal: "#474747",
@@ -54,22 +61,17 @@ export const Pokemon = () => {
   return (
     <StyledSection bgColor={colorByType}>
       <SectionHeader>
-        <Link to="/">Back</Link>
-        <p>Add</p>
+        <BackButton path="/" />
+        <AddToFav pokemonName={pokemonName} />
       </SectionHeader>
+      <PokemonImage
+        src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${pokemonName}.gif`}
+      />
       <SectionHeader>
         <p className="pokemon-name">{pokemonName}</p>
         <p className="pokemon-id">{`#${data.id}`}</p>
       </SectionHeader>
-      <TypesContainer>
-        {types &&
-          types.map((types) => (
-            <TypeTag type={types.type.name} key={types.type.slot} />
-          ))}
-      </TypesContainer>
-      <PokemonImage
-        src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${pokemonName}.gif`}
-      />
+
       <StatsCardContainer>
         <NavContainer hoverColor={colorByType}>
           <a
@@ -121,13 +123,19 @@ const BasicStats = ({ stats }) => {
 };
 
 const BasicInfo = ({ data }) => {
-  const { abilities, base_experience, height, weight, sprites } = data;
+  const { abilities, base_experience, height, weight, sprites, types } = data;
   return (
     <>
       <AdditionalImageWrapper>
         <p>Base XP: {base_experience}</p>
         <PokemonImage src={sprites.front_default} />
         <PokemonImage src={sprites.back_default} />
+        <TypesContainer>
+          {types &&
+            types.map((types) => (
+              <TypeTag type={types.type.name} key={types.type.slot} />
+            ))}
+        </TypesContainer>
       </AdditionalImageWrapper>
       <BasicTraitsContainer>
         <tbody>

@@ -7,3 +7,4 @@ export * from "./Thumbnail/Thumbnail";
 export * from "./Layout/Layout";
 export * from "./Container/Container";
 export * from "./TypeTag/TypeTag";
+export * from "./FavPokemon/FavPokemon";
