@@ -15,6 +15,7 @@ import {
   StatsCardContainer,
   StyledSection,
   TypesContainer,
+  HeaderWrapper,
 } from "./styles";
 
 /* 
@@ -37,17 +38,19 @@ export const Pokemon = () => {
 
   return (
     <StyledSection bgColor={colorByType}>
-      <SectionHeader>
-        <BackButton path="/" />
-        <AddToFav pokemonName={pokemonName} />
-      </SectionHeader>
-      <PokemonImage
-        src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${pokemonName}.gif`}
-      />
-      <SectionHeader>
-        <p className="pokemon-name">{pokemonName}</p>
-        <p className="pokemon-id">{`#${data.id}`}</p>
-      </SectionHeader>
+      <HeaderWrapper>
+        <SectionHeader>
+          <BackButton path="/" />
+          <AddToFav pokemonName={pokemonName} />
+        </SectionHeader>
+        <PokemonImage
+          src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${pokemonName}.gif`}
+        />
+        <SectionHeader>
+          <p className="pokemon-name">{pokemonName}</p>
+          <p className="pokemon-id">{`#${data.id}`}</p>
+        </SectionHeader>
+      </HeaderWrapper>
 
       <StatsCardContainer>
         <NavContainer hoverColor={colorByType}>
