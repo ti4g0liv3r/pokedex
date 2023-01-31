@@ -1,8 +1,8 @@
 import { PokemonList, Title } from "../../components";
-import { useClient } from "../../hooks";
+import { usePokeProvider } from "../../hooks";
 
 export const Home = () => {
-  const { data, isLoading, error } = useClient("pokemon?limit=151");
+  const { data, isLoading, error } = usePokeProvider();
 
   if (isLoading) return <Title size={1}>Cargando...</Title>;
 
@@ -15,7 +15,7 @@ export const Home = () => {
       <Title size={1} capitalized={false}>
         List of current pokemons
       </Title>
-      <PokemonList list={data.results} />;
+      <PokemonList list={data} />;
     </>
   );
 };

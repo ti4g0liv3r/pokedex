@@ -1,16 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { App } from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { App } from "./App";
 import GlobalStyle from "./styles/globalStyles";
+import { PokeProvider } from "./context";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <GlobalStyle />
     <BrowserRouter>
-      <Routes>
-        <Route path="/*" element={<App />} />
-      </Routes>
+      <PokeProvider>
+        <Routes>
+          <Route path="/*" element={<App />} />
+        </Routes>
+      </PokeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
