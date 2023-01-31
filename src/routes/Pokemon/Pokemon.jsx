@@ -1,74 +1,43 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
-import styled from "styled-components";
+import { Link, useParams } from "react-router-dom";
 import { Title, TypeTag } from "../../components";
 import { useClient } from "../../hooks";
+import {
+  AdditionalImageWrapper,
+  BasicStatContainer,
+  BasicStatWrapper,
+  BasicTraitsContainer,
+  NavContainer,
+  PokemonImage,
+  SectionHeader,
+  StatsBar,
+  StatsCardContainer,
+  StyledSection,
+  TypesContainer,
+} from "./styles";
 
-const PokemonImage = styled.img`
-  height: 100%;
-  width: 100%;
-  max-width: 150px;
-  margin-bottom: 30px;
-`;
-
-///////////////////////////
-const StyledSection = styled.section`
-  width: 100%;
-  height: 100%;
-  border: 1px solid transparent;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  background-color: teal;
-`;
-
-const SectionHeader = styled.div`
-  width: 100%;
-  max-width: 500px;
-  margin: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  color: white;
-  padding: 20px;
-
-  > p.pokemon-name {
-    text-transform: capitalize;
-    margin: 0px;
-    font-weight: bold;
-    font-size: 28px;
-  }
-
-  > p.pokemon-id {
-    text-transform: capitalize;
-    margin: 0px;
-    font-weight: bold;
-    font-size: 18px;
-  }
-`;
-
-const TypesContainer = styled.div`
-  width: 100%;
-  max-width: 500px;
-`;
-
-const StatsCardContainer = styled.div`
-  width: 100%;
-  max-width: 500px;
-  height: 100%;
-  background-color: white;
-  border: 1px solid white;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  margin: 0px 20px;
-  padding: 20px;
-
-  -webkit-box-shadow: -1px 0px 10px 0px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: -1px 0px 10px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: -1px 0px 10px 0px rgba(0, 0, 0, 0.2);
-`;
+const TAG_COLOR = {
+  normal: "#474747",
+  fighting: "#995e11",
+  flying: "#078",
+  poison: "#4a0c6e",
+  ground: "#5f3c08",
+  rock: "#695a45",
+  bug: "#389712",
+  ghost: "#45385a",
+  steel: "#60777a",
+  fire: "#7e1c1c",
+  water: "#173e88",
+  grass: "#0e5f1b",
+  electric: "#d3b21f",
+  psychic: "#a2aa5d",
+  ice: "#598cb6",
+  dragon: "#20b37b",
+  dark: "#233235",
+  fairy: "#c437d1",
+  unknown: "#666666",
+  shadow: "#1c2a2c",
+};
 
 export const Pokemon = () => {
   const [activeMenu, setActiveMenu] = useState("basic-info");
@@ -79,12 +48,15 @@ export const Pokemon = () => {
 
   if (error) return <Title>Oops, something went wrong</Title>;
 
-  console.log(data);
-  const mainImage = data?.sprites?.front_default;
   const { types, stats } = data;
+  const colorByType = TAG_COLOR[types[0].type?.name || "normal"];
 
   return (
-    <StyledSection>
+    <StyledSection bgColor={colorByType}>
+      <SectionHeader>
+        <Link to="/">Back</Link>
+        <p>Add</p>
+      </SectionHeader>
       <SectionHeader>
         <p className="pokemon-name">{pokemonName}</p>
         <p className="pokemon-id">{`#${data.id}`}</p>
@@ -99,7 +71,20 @@ export const Pokemon = () => {
         src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${pokemonName}.gif`}
       />
       <StatsCardContainer>
-        <CardMenuNav active={activeMenu} setActive={setActiveMenu} />
+        <NavContainer hoverColor={colorByType}>
+          <a
+            className={activeMenu === "basic-info" ? "active" : ""}
+            onClick={() => setActiveMenu("basic-info")}
+          >
+            Basic Info
+          </a>
+          <a
+            className={activeMenu === "stats" ? "active" : ""}
+            onClick={() => setActiveMenu("stats")}
+          >
+            Stats
+          </a>
+        </NavContainer>
         {activeMenu === "stats" ? (
           <BasicStats stats={stats} />
         ) : (
@@ -110,135 +95,60 @@ export const Pokemon = () => {
   );
 };
 
-const StatsBar = styled.div`
-  width: 100%;
-  height: 8px;
-  border: 1px solid lightgray;
-  border-radius: 20px;
-  background: linear-gradient(
-    to right,
-    green ${({ stat }) => `${stat}%`},
-    white ${({ stat }) => `${stat - 100}%`},
-    transparent
-  );
-`;
-
-const BasicStatsContainer = styled.div`
-  width: 100%;
-  max-width: 400px;
-  margin: auto;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-
-  > p {
-    font-weight: bold;
-    color: gray;
-    text-transform: uppercase;
-  }
-`;
-
 const BasicStats = ({ stats }) => {
+  const StatsLabels = {
+    hp: "HP",
+    attack: "Attack",
+    defense: "Defense",
+    "special-attack": "S. attack",
+    "special-defense": "S. defense",
+    speed: "Speed",
+  };
+
   return (
-    stats &&
-    stats.map(({ base_stat, stat }) => (
-      <BasicStatsContainer key={stat.name}>
-        <p>{stat.name}</p> <StatsBar stat={base_stat} />
-      </BasicStatsContainer>
-    ))
+    <BasicStatContainer>
+      {stats &&
+        stats.map(({ base_stat, stat }) => (
+          <BasicStatWrapper key={stat.name}>
+            <p>
+              <span>{StatsLabels[stat.name]}</span> <span>{base_stat}</span>
+            </p>
+            <StatsBar stat={base_stat} />
+          </BasicStatWrapper>
+        ))}
+    </BasicStatContainer>
   );
 };
-
-const BasicTraitsContainer = styled.table`
-  margin: auto;
-  width: 100%;
-  max-width: 400px;
-  font-weight: bold;
-  tr {
-    height: 30px;
-  }
-  td {
-    width: 50%;
-    color: gray;
-
-    &:last-child {
-      text-align: right;
-      font-weight: normal;
-    }
-
-    > span {
-      margin-left: 10px;
-    }
-  }
-`;
 
 const BasicInfo = ({ data }) => {
-  const { abilities, base_experience, height, weight, types } = data;
+  const { abilities, base_experience, height, weight, sprites } = data;
   return (
-    <BasicTraitsContainer>
-      <tbody>
-        <tr>
-          <td>Height</td>
-          <td>{height}</td>
-        </tr>
-        <tr>
-          <td>Weight</td>
-          <td>{`${weight} Kgs`}</td>
-        </tr>
-        <tr>
-          <td>Abilities</td>
-          <td>
-            {abilities.map((ability) => (
-              <span key={ability.slot}>{ability.ability.name}</span>
-            ))}
-          </td>
-        </tr>
-      </tbody>
-    </BasicTraitsContainer>
-  );
-};
-
-const NavContainer = styled.nav`
-  width: 200px;
-  margin: auto;
-  text-align: center;
-
-  > a {
-    margin: 0px 10px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: lightgray;
-    font-weight: bold;
-    cursor: pointer;
-
-    &:hover {
-      color: gray;
-      border-bottom: 2px solid paleturquoise;
-    }
-  }
-
-  > a.active {
-    color: gray;
-    border-bottom: 2px solid paleturquoise;
-  }
-`;
-
-const CardMenuNav = ({ active, setActive }) => {
-  return (
-    <NavContainer>
-      <a
-        className={active === "basic-info" ? "active" : ""}
-        onClick={() => setActive("basic-info")}
-      >
-        Basic Info
-      </a>
-      <a
-        className={active === "stats" ? "active" : ""}
-        onClick={() => setActive("stats")}
-      >
-        Stats
-      </a>
-    </NavContainer>
+    <>
+      <AdditionalImageWrapper>
+        <p>Base XP: {base_experience}</p>
+        <PokemonImage src={sprites.front_default} />
+        <PokemonImage src={sprites.back_default} />
+      </AdditionalImageWrapper>
+      <BasicTraitsContainer>
+        <tbody>
+          <tr>
+            <td>Height:</td>
+            <td>{height}</td>
+          </tr>
+          <tr>
+            <td>Weight:</td>
+            <td>{`${weight} Kgs`}</td>
+          </tr>
+          <tr>
+            <td>Abilities:</td>
+            <td>
+              {abilities.map((ability) => (
+                <span key={ability.slot}>{ability.ability.name}</span>
+              ))}
+            </td>
+          </tr>
+        </tbody>
+      </BasicTraitsContainer>
+    </>
   );
 };
