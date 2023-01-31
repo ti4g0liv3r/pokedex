@@ -1,22 +1,16 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { AddToFav, BackButton, Title, TypeTag } from "../../components";
+import { AddToFav, BackButton, Title } from "../../components";
 import { useClient } from "../../hooks";
 import { BasicStats } from "./BasicStats";
 import { BasicInfo } from "./BasicInfo";
 import {
-  AdditionalImageWrapper,
-  BasicStatContainer,
-  BasicStatWrapper,
-  BasicTraitsContainer,
   NavContainer,
   PokemonImage,
   SectionHeader,
-  StatsBar,
   StatsCardContainer,
   StyledSection,
-  TypesContainer,
   HeaderWrapper,
 } from "./styles";
 
