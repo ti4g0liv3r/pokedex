@@ -2,22 +2,18 @@ import styled from "styled-components";
 
 const StyledTitle = styled.p`
   text-transform: ${({ capitalized }) => (capitalized ? "capitalize" : "none")};
+  text-align: center;
   margin: 10px 0px;
-  font-size: ${({ size }) => size};
+  font-size: ${({ size, theme: { titleSizes } }) => size && titleSizes[size]};
+
+  ${({ theme }) => theme.query.xs`
+      font-size: ${({ theme }) => theme.titleSizes[4]}
+   `}
 `;
 
-const TITLE_SIZES = {
-  1: "48px",
-  2: "38px",
-  3: "28px",
-  4: "18px",
-  5: "8px",
-};
-
 export const Title = ({ size = 4, capitalized = true, children }) => {
-  const titleSize = TITLE_SIZES[size];
   return (
-    <StyledTitle size={titleSize} capitalized={capitalized}>
+    <StyledTitle size={size} capitalized={capitalized}>
       {children}
     </StyledTitle>
   );

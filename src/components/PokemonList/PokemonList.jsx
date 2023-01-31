@@ -8,6 +8,7 @@ const StyledList = styled.ul`
   flex-wrap: wrap;
   list-style: none;
   justify-content: center;
+  padding: 0px;
 `;
 
 const StyledListItem = styled.li`

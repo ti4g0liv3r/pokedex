@@ -6,15 +6,24 @@ export const PokemonImage = styled.img`
   max-width: 150px;
   max-height: 150px;
   margin-bottom: 10px;
+
+  ${({ theme }) => theme.query.xs`
+    max-width: 100px;
+    max-height: 100px;
+   `}
 `;
 
 ///////////////////////////
+/* 
+
+  height: ${({ theme }) =>
+    `${theme.logoContainerHeight - theme.windowSize.height}px`};
+*/
 export const StyledSection = styled.section`
   width: 100%;
   height: 100%;
-  border: 1px solid transparent;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  max-width: 500px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,12 +31,28 @@ export const StyledSection = styled.section`
   background-color: ${({ bgColor, theme: { tagColor } }) =>
     bgColor && tagColor[bgColor]};
   padding-top: 20px;
-  margin-top: 20px;
+  margin: 20px 0px;
+
+  ${({ theme }) => theme.query.xs`
+    max-width: 350px;
+   `}
+`;
+
+export const HeaderWrapper = styled.div`
+  height: 300px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+
+  ${({ theme }) => theme.query.xs`
+    max-width: 300px;
+    max-height: 230px;
+   `}
 `;
 
 export const SectionHeader = styled.div`
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
   margin: auto;
   display: flex;
   flex-direction: row;
@@ -49,12 +74,19 @@ export const SectionHeader = styled.div`
     font-weight: bold;
     font-size: 18px;
   }
+
+  ${({ theme }) => theme.query.xs`
+    max-width: 300px;
+   `}
 `;
 
 export const TypesContainer = styled.div`
   width: 100%;
   height: 40px;
-  max-width: 500px;
+  max-width: 400px;
+  ${({ theme }) => theme.query.xs`
+    max-width: 300px;
+   `}
 `;
 
 export const StatsCardContainer = styled.div`
@@ -62,11 +94,9 @@ export const StatsCardContainer = styled.div`
   max-width: 500px;
   height: 100%;
   background-color: white;
-  border: 1px solid white;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  margin: 0px 20px;
-  padding: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 20px 0px;
 
   -webkit-box-shadow: -1px 0px 10px 0px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: -1px 0px 10px 0px rgba(0, 0, 0, 0.2);
@@ -88,7 +118,6 @@ export const StatsBar = styled.div`
 `;
 export const BasicStatContainer = styled.div`
   height: 100%;
-  max-height: 300px;
   padding-top: 40px;
   display: flex;
   flex-direction: column;
@@ -98,6 +127,7 @@ export const BasicStatContainer = styled.div`
 
 export const BasicStatWrapper = styled.div`
   width: 100%;
+  height: 100%;
   max-width: 400px;
   margin: auto;
   margin: 10px;
@@ -105,6 +135,9 @@ export const BasicStatWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
+  ${({ theme }) => theme.query.xs`
+    max-width: 300px;
+   `}
 
   > p {
     color: gray;
@@ -124,6 +157,11 @@ export const BasicTraitsContainer = styled.table`
   width: 100%;
   max-width: 400px;
   font-weight: normal;
+
+  ${({ theme }) => theme.query.xs`
+    max-width: 300px;
+   `}
+
   tr {
     height: 30px;
   }

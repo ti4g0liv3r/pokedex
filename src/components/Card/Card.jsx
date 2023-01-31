@@ -13,6 +13,11 @@ const StyledCard = styled.div`
   border-radius: 5px;
   background-color: #ecebeb;
 
+  ${({ theme }) => theme.query.xs`
+      min-width: 150px;
+      min-height: 150px;
+   `}
+
   &:hover {
     background-color: #ecebeb;
     transform: scale(1.1);

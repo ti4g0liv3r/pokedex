@@ -1,5 +1,6 @@
 import React from "react";
 import { ThemeProvider, css } from "styled-components";
+import { useWindowSize } from "../../../hooks";
 
 const breakpoints = {
   xs: "480px",
@@ -8,16 +9,17 @@ const breakpoints = {
   lg: "1200px",
 };
 
-const theme = {
-  query: Object.keys(breakpoints).reduce((accumulator, label) => {
-    accumulator[label] = (...args) => css`
-      @media (min-width: ${breakpoints[label]}) {
-        ${css(...args)};
-      }
-    `;
-    return accumulator;
-  }, {}),
+export const query = Object.keys(breakpoints).reduce((accumulator, label) => {
+  accumulator[label] = (...args) => css`
+    @media (max-width: ${breakpoints[label]}) {
+      ${css(...args)};
+    }
+  `;
+  return accumulator;
+}, {});
 
+const theme = {
+  logoContainerHeight: 120,
   colors: {
     powderWhite: "#FFFDF9",
     persianGreen: "#06B49A",
@@ -53,8 +55,21 @@ const theme = {
     medium: "2em",
     large: "3em",
   },
+  titleSizes: {
+    1: "48px",
+    2: "38px",
+    3: "28px",
+    4: "18px",
+    5: "8px",
+  },
 };
 
-export const Theme = ({ children }) => (
-  <ThemeProvider theme={theme}>{children}</ThemeProvider>
-);
+export const Theme = ({ children }) => {
+  const { windowSize } = useWindowSize();
+  console.log(windowSize);
+  return (
+    <ThemeProvider theme={{ ...theme, query, windowSize }}>
+      {children}
+    </ThemeProvider>
+  );
+};
