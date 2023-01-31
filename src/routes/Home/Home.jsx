@@ -12,9 +12,6 @@ export const Home = () => {
     );
   return (
     <>
-      <Title size={1} capitalized={false}>
-        List of current pokemons
-      </Title>
       <PokemonList list={data} />;
     </>
   );

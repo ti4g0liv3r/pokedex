@@ -66,7 +66,7 @@ const theme = {
 
 export const Theme = ({ children }) => {
   const { windowSize } = useWindowSize();
-  console.log(windowSize);
+
   return (
     <ThemeProvider theme={{ ...theme, query, windowSize }}>
       {children}
