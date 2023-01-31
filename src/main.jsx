@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { App } from "./App";
 import GlobalStyle from "./styles/globalStyles";
 import { PokeProvider } from "./context";
-import { Theme } from "./assets/styles/ThemeProvider/ThemeProvider";
+import { Theme } from "./styles/ThemeProvider/ThemeProvider";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

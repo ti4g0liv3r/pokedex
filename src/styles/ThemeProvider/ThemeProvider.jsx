@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider, css } from "styled-components";
-import { useWindowSize } from "../../../hooks";
+import { useWindowSize } from "../../hooks";
 
 const breakpoints = {
   xs: "480px",
