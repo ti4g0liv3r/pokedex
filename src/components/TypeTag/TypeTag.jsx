@@ -6,6 +6,7 @@ const StyledTag = styled.small`
   color: white;
   margin: 0px 5px;
   border-radius: 50px;
+  cursor: pointer;
 `;
 
 export const TypeTag = ({ type = "normal" }) => {
