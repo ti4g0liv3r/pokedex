@@ -22,11 +22,22 @@ export const PokeProvider = ({ children }) => {
     }
   }, [isLoading, data]);
 
-  const filteredResults = pokemon.filter((pokemon) =>
-    pokemon.name.includes(search.toLowerCase())
-  );
+  const setFav = (pokemonName) => {
+    const newPokemonList = pokemon.map((pokemon) => {
+      if (pokemon.name === pokemonName) {
+        return { ...pokemon, isFav: !pokemon.isFav };
+      }
+      return pokemon;
+    });
+    setPokemon(newPokemonList);
+  };
 
   const favPokemons = pokemon.filter((pokemon) => pokemon.isFav);
+  const pokemonList = display === "all" ? pokemon : favPokemons;
+
+  const filteredResults = pokemonList.filter((pokemon) =>
+    pokemon.name.includes(search.toLowerCase())
+  );
 
   const listToShow =
     search.length !== 0
@@ -41,7 +52,9 @@ export const PokeProvider = ({ children }) => {
         setPokemon,
         setSearch,
         setDisplay,
+        setFav,
         display,
+        pokemon,
         data: listToShow,
         isLoading,
         error,

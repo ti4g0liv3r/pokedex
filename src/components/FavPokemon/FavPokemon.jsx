@@ -11,19 +11,9 @@ const IconContainer = styled.div`
 `;
 
 export const AddToFav = ({ pokemonName }) => {
-  const { data, setPokemon } = usePokeProvider();
+  const { pokemon, setFav } = usePokeProvider();
 
-  const setFav = () => {
-    const newPokemonList = data.map((pokemon) => {
-      if (pokemon.name === pokemonName) {
-        return { ...pokemon, isFav: !pokemon.isFav };
-      }
-      return pokemon;
-    });
-    setPokemon(newPokemonList);
-  };
-
-  const foundPokemon = data.find((pokemon) => pokemon.name === pokemonName);
+  const foundPokemon = pokemon.find((pokemon) => pokemon.name === pokemonName);
 
   const isFav = foundPokemon?.isFav && foundPokemon?.isFav;
 
