@@ -11,13 +11,13 @@ This is a simple Pokemon application test, used as example the **first pokemon g
 ## Project structure
 
 - This project is structured in a way that is easy to understand, expect to find the following folders:
-  => api
-  => assets
-  => components (to store shared components accross the app)
-  => context
-  => hooks
-  => routes (which each route/page)
-  => styles (theme, globalStyles)
+  - api
+  - assets
+  - components (to store shared components accross the app)
+  - context
+  - hooks
+  - routes (which each route/page)
+  - styles (theme, globalStyles)
 
 ## Routes
 
