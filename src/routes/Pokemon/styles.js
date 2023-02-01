@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+export const ImageContainer = styled.div`
+  width: 120px;
+  height: 120px;
+  margin: auto;
+  display: inline;
+
+  > img {
+    object-fit: contain;
+  }
+`;
+
 export const PokemonImage = styled.img`
   height: 100%;
   width: 100%;
@@ -42,7 +53,10 @@ export const HeaderWrapper = styled.div`
   height: 300px;
   width: 100%;
   max-width: 400px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 
   ${({ theme }) => theme.query.xs`
     max-width: 300px;

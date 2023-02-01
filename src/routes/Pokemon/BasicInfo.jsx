@@ -4,6 +4,7 @@ import {
   BasicTraitsContainer,
   PokemonImage,
   TypesContainer,
+  ImageContainer,
 } from "./styles";
 
 export const BasicInfo = ({ data }) => {
@@ -12,8 +13,12 @@ export const BasicInfo = ({ data }) => {
     <>
       <AdditionalImageWrapper>
         <p>Base XP: {base_experience}</p>
-        <PokemonImage src={sprites.front_default} />
-        <PokemonImage src={sprites.back_default} />
+        <ImageContainer>
+          <PokemonImage src={sprites.front_default} />
+        </ImageContainer>
+        <ImageContainer>
+          <PokemonImage src={sprites.back_default} />
+        </ImageContainer>
         <TypesContainer>
           {types &&
             types.map((types) => (

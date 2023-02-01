@@ -1,15 +1,14 @@
 import { BasicStatContainer, BasicStatWrapper, StatsBar } from "./styles";
 
+const StatsLabels = {
+  hp: "HP",
+  attack: "Attack",
+  defense: "Defense",
+  "special-attack": "S. attack",
+  "special-defense": "S. defense",
+  speed: "Speed",
+};
 export const BasicStats = ({ stats }) => {
-  const StatsLabels = {
-    hp: "HP",
-    attack: "Attack",
-    defense: "Defense",
-    "special-attack": "S. attack",
-    "special-defense": "S. defense",
-    speed: "Speed",
-  };
-
   return (
     <BasicStatContainer>
       {stats &&

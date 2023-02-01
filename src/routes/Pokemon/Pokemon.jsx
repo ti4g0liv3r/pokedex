@@ -12,6 +12,7 @@ import {
   StatsCardContainer,
   StyledSection,
   HeaderWrapper,
+  ImageContainer,
 } from "./styles";
 
 export const Pokemon = () => {
@@ -33,9 +34,11 @@ export const Pokemon = () => {
           <BackButton path="/" />
           <AddToFav pokemonName={pokemonName} />
         </SectionHeader>
-        <PokemonImage
-          src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${pokemonName}.gif`}
-        />
+        <ImageContainer>
+          <PokemonImage
+            src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${pokemonName}.gif`}
+          />
+        </ImageContainer>
         <SectionHeader>
           <p className="pokemon-name">{pokemonName}</p>
           <p className="pokemon-id">{`#${data.id}`}</p>
