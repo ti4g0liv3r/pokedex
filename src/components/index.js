@@ -1,5 +1,4 @@
 export * from "./Button/Button";
-export * from "./Grid/Grid";
 export * from "./Card/Card";
 export * from "./PokemonList/PokemonList";
 export * from "./Title/Title";
