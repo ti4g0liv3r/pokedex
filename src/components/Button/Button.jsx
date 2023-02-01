@@ -8,7 +8,7 @@ export const Button = ({ type = "primary", name = "button" }) => {
   return <StyledButton type={type}>{name}</StyledButton>;
 };
 
-const ButtonLinkWrapper = styled.div`
+const ButtonLink = styled.div`
   width: 40px;
   height: 40px;
   background-color: #ffffff5e;
@@ -16,17 +16,13 @@ const ButtonLinkWrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-
-  > a {
-    color: white;
-    padding-top: 3px;
-  }
+  color: white;
 `;
 
 export const BackButton = ({ path = "", text }) => {
   return (
-    <ButtonLinkWrapper>
-      <Link to={path}>{text ? text : <FaArrowLeft />}</Link>
-    </ButtonLinkWrapper>
+    <Link to={path}>
+      <ButtonLink>{text ? text : <FaArrowLeft />}</ButtonLink>
+    </Link>
   );
 };
