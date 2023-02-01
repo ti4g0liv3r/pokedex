@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { client } from "../../api/client";
 
+//Simple hook to fetch all pokemon data
+//It takes as argument an URL and returns the data
+
 export const useClient = (url) => {
   const [data, setData] = useState({
     data: null,

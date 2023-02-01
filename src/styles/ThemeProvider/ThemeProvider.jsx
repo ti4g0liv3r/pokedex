@@ -2,6 +2,7 @@ import React from "react";
 import { ThemeProvider, css } from "styled-components";
 import { useWindowSize } from "../../hooks";
 
+//Main breakpoints
 const breakpoints = {
   xs: "480px",
   sm: "768px",
@@ -9,6 +10,8 @@ const breakpoints = {
   lg: "1200px",
 };
 
+//Media query function to be used later on component level.
+//This will be merged later on themeProvider.
 export const query = Object.keys(breakpoints).reduce((accumulator, label) => {
   accumulator[label] = (...args) => css`
     @media (max-width: ${breakpoints[label]}) {
@@ -18,14 +21,10 @@ export const query = Object.keys(breakpoints).reduce((accumulator, label) => {
   return accumulator;
 }, {});
 
+//This will provide the colors, fonts and sizes necessary across the application.
+//This could also be improved to apply different "themes".
 const theme = {
   logoContainerHeight: 120,
-  colors: {
-    powderWhite: "#FFFDF9",
-    persianGreen: "#06B49A",
-    lightBlue: "#AFDBD2",
-    onyx: "#36313D",
-  },
 
   tagColor: {
     normal: "#474747",
@@ -50,11 +49,6 @@ const theme = {
     shadow: "#1c2a2c",
   },
   fonts: ["sans-serif", "Roboto"],
-  fontSizes: {
-    small: "1em",
-    medium: "2em",
-    large: "3em",
-  },
   titleSizes: {
     1: "48px",
     2: "38px",
@@ -65,6 +59,7 @@ const theme = {
 };
 
 export const Theme = ({ children }) => {
+  //Window size hook to make improvements on the application when needed
   const { windowSize } = useWindowSize();
 
   return (

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+//Simple hook to detect the window size,
+
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
     height: window.innerHeight,

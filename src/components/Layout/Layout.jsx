@@ -1,20 +1,11 @@
 import { Outlet } from "react-router-dom";
-import styled from "styled-components";
 
 import { StyledContainer } from "../";
 import logo from "../../assets/images/pokemon_logo.png";
+import { LogoWrapper, StyledLogo } from "./styles";
 
-const StyledLogo = styled.img`
-  max-height: 100px;
-  margin: 10px;
-  ${({ theme }) => theme.query.xs`
-      max-height: 80px;
-   `}
-`;
-
-const LogoWrapper = styled.div`
-  height: ${({ theme }) => `${theme.logoContainerHeight}px`};
-`;
+//StyledContainer is used to give the "structure" all over the app.
+//Additional components are on styles.js
 
 export const Layout = () => {
   return (

@@ -1,3 +1,6 @@
+//No much to see here, this is a small NOT Found page
+//If user is trying to access a page that doesn't exist, react-router will bring them here.
+
 export const NotFound = () => {
   return (
     <div>

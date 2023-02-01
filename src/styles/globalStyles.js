@@ -1,5 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
+//Default styles that will be used across the page.
+//Here is a nice place to reset browser's default config.
+
 const GlobalStyle = createGlobalStyle`
 html{
   overflow-y: scroll;

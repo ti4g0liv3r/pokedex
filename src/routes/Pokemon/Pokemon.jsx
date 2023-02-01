@@ -15,6 +15,14 @@ import {
   ImageContainer,
 } from "./styles";
 
+//This is the most "complex" component
+//It takes each individual pokemon and display it's information
+//By use url params, we call the client "hook" with pokemon's name, at it returns pokemon info.
+//It has a small menu nav (which I didn't moved apart), and two additional components to show pokemon stats
+
+//Some color logic is based on pokemon type, styledComponent will take care of this logic.
+//Additional components are on styles.js
+
 export const Pokemon = () => {
   const [activeMenu, setActiveMenu] = useState("basic-info");
   const { pokemonName } = useParams();
