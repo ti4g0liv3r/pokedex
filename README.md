@@ -8,6 +8,13 @@ This is a simple Pokemon application test, used as example the **first pokemon g
 - User can search for a pokemon by name.
 - User can add pokemon as favorite.
 
+## Installation process
+
+- Clone or download this project to your local workstation.
+- Navigate to the project's folder and run:
+  - npm install
+  - npm run dev
+
 ## Project structure
 
 - This project is structured in a way that is easy to understand, expect to find the following folders:
