@@ -21,7 +21,7 @@ const StyledLink = styled(Link)`
 `;
 
 export const PokemonList = ({ list }) => {
-  if (!list) return <p>No pokemons to show</p>;
+  if (!list || list.length === 0) return <p>No pokemons found</p>;
 
   return (
     <StyledList>
